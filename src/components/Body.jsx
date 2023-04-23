@@ -21,29 +21,29 @@ const Body = () => {
     <div className='featured'>
         <div className='cards'>
         {data.map((curData) => {
-            const {image , name , current_price} = curData
+            const {image , name , current_price , price_change_percentage_24h} = curData;
 
             return (
                 
      
-                <div className='card'>
+                <div className='card' key={curData.id}>
                     <div className='top'>
-                        <img src={curData.image} />
+                        <img src={image} alt={name}/>
                     </div>
                     
                     <div>
-                    <h5>{curData.name}</h5>
-                    <p>${curData.current_price.toLocaleString()}</p>
+                    <h5>{name}</h5>
+                    <p>${current_price.toLocaleString()}</p>
                     </div>
-                    {curData.price_change_percentage_24h < 0 ? (
+                    {price_change_percentage_24h < 0 ? (
                             <span className='red'>
                                 <FiArrowDown className='icon' />
-                                {data[0].price_change_percentage_24h.toFixed(2)}%
+                                {price_change_percentage_24h.toFixed(2)}%
                             </span>
                         ) : (
                                 <span className='green'>
                                     <FiArrowUpRight className='icon' />
-                                    {data[0].price_change_percentage_24h.toFixed(2)}%
+                                    {price_change_percentage_24h.toFixed(2)}%
                                 </span>
                  )}
     
